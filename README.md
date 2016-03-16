@@ -13,7 +13,7 @@ To install, clone this repo and install dependencies like so:
 git clone git@github.com:vroomwaddle/tackdb.git
 cd tackdb/
 pip install -r requirements.txt
-``
+```
 
 ## Test
 
