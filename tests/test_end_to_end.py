@@ -1,12 +1,8 @@
+import pytest
 from tackdb.sessions import db_session
 
 
-def assert_sessions_equal(seq1, seq2):
-    for out1, out2 in zip(seq1, seq2):
-        assert out1 == out2
-
-
-def test_e2e_sequence_1():
+def io_sessions():
     sessions = [
         
         [("BEGIN", None),
@@ -54,6 +50,9 @@ def test_e2e_sequence_1():
         ("COMMIT", None),
         ("END", None)]
     ]
-    for s in sessions: 
-        commands, expected = zip(*s)
-        assert_sessions_equal(db_session(commands), expected)
+    return [tuple(zip(*seq)) for seq in sessions]
+
+@pytest.mark.parametrize("input_commands,expected", io_sessions())
+def test_session_end_to_end(input_commands, expected):
+    for result, exp in zip(db_session(input_commands), expected):
+        assert result == exp
