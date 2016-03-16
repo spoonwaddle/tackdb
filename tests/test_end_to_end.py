@@ -3,7 +3,7 @@ from tackdb.sessions import db_session
 
 def assert_sessions_equal(seq1, seq2):
     for out1, out2 in zip(seq1, seq2):
-        assert(out1, out2)
+        assert out1 == out2
 
 
 def test_e2e_sequence_1():
@@ -24,7 +24,7 @@ def test_e2e_sequence_1():
         [("BEGIN", None),
          ("SET a 30", None),
          ("BEGIN", None),
-         ("SET a 40,", None),
+         ("SET a 40", None),
          ("COMMIT", None),
          ("GET a", "40"),
          ("ROLLBACK", "NO TRANSACTION"),
@@ -45,12 +45,12 @@ def test_e2e_sequence_1():
 
        [("SET a 10", None),
         ("BEGIN", None),
-        ("NUMEQUALTO 10", None),
+        ("NUMEQUALTO 10", '1'),
         ("BEGIN", None),
         ("UNSET a", None),
-        ("NUMEQUALTO 10", None),
+        ("NUMEQUALTO 10", '0'),
         ("ROLLBACK", None),
-        ("NUMEQUALTO 10", None),
+        ("NUMEQUALTO 10", '1'),
         ("COMMIT", None),
         ("END", None)]
     ]
