@@ -5,5 +5,6 @@ setup(name='tackdb',
       description='The key-value store the world needs.',
       url='https://github.com/vroomwaddle/tackdb.git',
       license='MIT',
+      entry_points={'console_scripts': ['tackdb-cli = tackdb.sessions:main']},
       packages=['tackdb'],
       zip_safe=False)

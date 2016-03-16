@@ -69,7 +69,10 @@ def stdin_lines():
             yield cmd
 
 
-if __name__ == "__main__":
+def main():
     for out in db_session(stdin_lines()):
         if out is not None:
             print(out)
+
+if __name__ == "__main__":
+    main()
