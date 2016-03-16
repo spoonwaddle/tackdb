@@ -1,6 +1,7 @@
 import pytest
 from tackdb.views import DataView
 
+
 def test_root():
     a = DataView()
     b = a.BEGIN()

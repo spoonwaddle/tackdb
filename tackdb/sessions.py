@@ -1,5 +1,5 @@
 import sys
-from views import DataView, RootViewException
+from tackdb.views import DataView, RootViewException
 
 
 def db_session(input_lines):
@@ -12,10 +12,7 @@ def db_session(input_lines):
             break
         
         view, out = execute(view, cmd, *args)
-        
-        if out is not None:
-            print(out)
-        
+        yield out
 
 def parse_command(command_string):
     split = command_string.split()
@@ -73,4 +70,6 @@ def stdin_lines():
 
 
 if __name__ == "__main__":
-    db_session(stdin_lines())
+    for out in db_session(stdin_lines()):
+        if out is not None:
+            print(out)
