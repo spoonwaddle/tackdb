@@ -14,6 +14,7 @@ def db_session(input_lines):
         view, out = execute(view, cmd, *args)
         yield out
 
+
 def parse_command(command_string):
     split = command_string.split()
     return (split[0].lower(), split[1:])
@@ -73,6 +74,7 @@ def main():
     for out in db_session(stdin_lines()):
         if out is not None:
             print(out)
+
 
 if __name__ == "__main__":
     main()
